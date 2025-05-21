@@ -74,7 +74,7 @@ def handle_exception(cmd, info_name, exc):
 def main():
 	commands = get_app_groups()
 	commands.update({"get-frappe-commands": get_frappe_commands, "get-frappe-help": get_frappe_help})
-	FrappeClickWrapper(click.Group, handle_exception)(commands=commands)(prog_name="bench")
+	FrappeClickWrapper(click.Group, handle_exception)(commands=commands)(prog_name="nsx")
 
 
 def get_app_groups() -> dict[str, click.Group | click.Command]:
