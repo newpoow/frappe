@@ -5,9 +5,9 @@ on:
   repository_dispatch:
     types: [frappe-framework-change]
   workflow_dispatch:
-  schedule:
+  #schedule:
     # Run everday at midnight UTC / 5:30 IST
-    - cron: "0 0 * * *"
+    #- cron: "0 0 * * *"
 
 concurrency:
   group: ui-develop-${{ github.event_name }}-${{ github.event.number }}
