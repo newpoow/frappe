@@ -401,7 +401,7 @@ def get_context(context):
 			context.parents = frappe.safe_eval(self.breadcrumbs, {"_": _})
 
 		if self.show_list and frappe.form_dict.is_new:
-			context.title = _("New {0}").format(context.title)
+			context.title = _("New {0}").format(_(context.title))
 
 		context.has_header = (frappe.form_dict.name or frappe.form_dict.is_new) and (
 			frappe.session.user != "Guest" or not self.login_required
@@ -464,7 +464,9 @@ def get_context(context):
 			if os.path.exists(js_path):
 				script = frappe.render_template(open(js_path).read(), context)
 
-				for path in get_code_files_via_hooks("webform_include_js", context.doc_type):
+				for path in get_code_files_via_hooks(
+					"webform_include_js", context.doc_type
+				) + get_code_files_via_hooks("webform_include_js", "*"):
 					custom_js = frappe.render_template(open(path).read(), context)
 					script = "\n\n".join([script, custom_js])
 
